@@ -22,7 +22,7 @@ import net.corda.core.utilities.ProgressTracker
         val NameStateREf = serviceHub.vaultService.queryBy<NameState>().states
         val inputStateAndRef = NameStateREf.filter { it.state.data.UniqueID.equals(UniqueID)}[0]
 
-       val Transactionsdata = TransactionState(Tranasactionstateinfo.Amount,Tranasactionstateinfo.TranscationID)
+       val Transactionsdata = TransactionState(Tranasactionstateinfo.Amount, Tranasactionstateinfo.TranscationID)
        // val Transactionsdata = TransactionState("102","x1234567890")
 
         val input = inputStateAndRef.state.data
@@ -71,4 +71,4 @@ class DoingPayment_responder(val counterpartySession: FlowSession) : FlowLogic<S
 
 
 @CordaSerializable
-class TransactionStateInfo (val Amount:String, val TranscationID:String)
+class TransactionStateInfo (val Amount:String,val TranscationID:String)

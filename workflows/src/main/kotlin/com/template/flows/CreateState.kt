@@ -22,14 +22,14 @@ import java.util.*
 @InitiatingFlow
 @StartableByRPC
 class NameFlow constructor( var name:String, val UniqueID: String,
-                            var lastname : String, var party:Party): FlowLogic<SignedTransaction>() {
+                            var Balance : String, var party:Party): FlowLogic<SignedTransaction>() {
 
     @Suspendable
     override fun call() : SignedTransaction {
 
         val notary = serviceHub.networkMapCache.notaryIdentities.first()
         val command = Command(NameContract.Commands.Create(), listOf(ourIdentity).map { it.owningKey } )
-        val namestate = NameState(name,UniqueID,lastname,party, UniqueIdentifier())
+        val namestate = NameState(name,UniqueID,Balance,party,UniqueIdentifier())
 
         val txBuilder = TransactionBuilder(notary)
                 .addOutputState(namestate, NameContract.ID)
